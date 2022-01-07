@@ -17,25 +17,28 @@ MIX_ENV=test mix deps.compile --force
 MIX_ENV=test mix compile --force --warnings-as-errors
 
 # Check if we are an umbrella app.
-if [ -d "apps" ]; then
-  GREAT_SUCCESS=0
+# if [ -d "apps" ]; then
+#   GREAT_SUCCESS=0
 
-  for app in $(ls apps)
-  do
-    echo ""
-    echo "=> Running tests for: $app"
-    cd apps/$app
-    mix test.ci
-    SUCCESS=$?
+#   for app in $(ls apps)
+#   do
+#     echo ""
+#     echo "=> Running tests for: $app"
+#     cd apps/$app
+#     mix test.ci
+#     SUCCESS=$?
 
-    if [ $SUCCESS != 0 ]
-    then
-      GREAT_SUCCESS=$SUCCESS
-    fi
-    cd ../../
-  done
-else
-  mix test.ci
-fi
+#     if [ $SUCCESS != 0 ]
+#     then
+#       GREAT_SUCCESS=$SUCCESS
+#     fi
+#     cd ../../
+#   done
+# else
+  # mix test.ci
+# fi
+
+#  Only run test on root mix
+mix test.ci
 
 exit $GREAT_SUCCESS
