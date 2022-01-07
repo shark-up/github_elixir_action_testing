@@ -13,6 +13,9 @@
 mix deps.get
 MIX_ENV=test mix deps.compile --force
 
+# try force install mjml
+npm install --prefix ./apps/phoenix_mjml/priv/mjml_cli
+
 # Compile everything, erroring on warnings to save some work.
 MIX_ENV=test mix compile --force --warnings-as-errors
 
